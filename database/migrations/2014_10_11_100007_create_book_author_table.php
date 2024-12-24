@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('book_author', function (Blueprint $table) {
+            $table->id('Book_AuthorID');
+            $table->unsignedBigInteger('BookID')->comment('Ссылка на таблицу Book');
+            $table->unsignedBigInteger('AuthorID')->comment('Ссылка на таблицу Author');
+            $table->timestamps();
+
+            $table->foreign('BookID')->references('BookID')->on('books')->onDelete('cascade');
+            $table->foreign('AuthorID')->references('AuthorID')->on('authors')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('book_author');
+    }
+};
