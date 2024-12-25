@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('authors', function (Blueprint $table) {
-            $table->id('AuthorID');
-            $table->string('Name', 255)->comment('Имя автора'); // Имя
-            $table->string('LName', 255)->comment('Фамилия автора'); // Фамилия
-            $table->string('FName', 255)->nullable()->comment('Отчество автора'); // Отчество
-            $table->text('Biography')->comment('Биография'); // Биография
-            $table->string('Picture', 255)->nullable()->comment('Изображение автора'); // Изображение
+            $table->id('author_id');
+            $table->string('name', 255)->comment('Имя автора'); // Имя
+            $table->string('lname', 255)->comment('Фамилия автора'); // Фамилия
+            $table->string('fname', 255)->nullable()->comment('Отчество автора'); // Отчество
+            $table->text('biography')->comment('Биография'); // Биография
+            $table->string('picture', 255)->nullable()->comment('Изображение автора'); // Изображение
             $table->timestamps(); // Метки времени
         });
     }

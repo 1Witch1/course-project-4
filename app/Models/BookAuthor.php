@@ -10,20 +10,20 @@ class BookAuthor extends Model
     use HasFactory;
 
     protected $table = 'book_author';
-    protected $primaryKey = 'Book_AuthorID';
+    protected $primaryKey = 'book_author_id';
 
     protected $fillable = [
-        'BookID',   // Ссылка на книгу
-        'AuthorID', // Ссылка на автора
+        'book_id',   // Ссылка на книгу
+        'author_id', // Ссылка на автора
     ];
 
     public function book()
     {
-        return $this->belongsTo(Book::class, 'BookID', 'BookID');
+        return $this->belongsTo(Book::class, 'book_id', 'book_id');
     }
 
     public function author()
     {
-        return $this->belongsTo(Author::class, 'AuthorID', 'AuthorID');
+        return $this->belongsTo(Author::class, 'author_id', 'author_id');
     }
 }

@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('UserID');
-            $table->string('Name', 255)->comment('Имя');
-            $table->string('LName', 255)->comment('Фамилия');
-            $table->string('FName', 255)->nullable()->comment('Отчество');
-            $table->string('Login', 255)->unique()->comment('Логин');
-            $table->string('Password', 255)->comment('Пароль');
-            $table->unsignedBigInteger('RoleID')->comment('Ссылка на таблицу Role');
+            $table->id('user_id');
+            $table->string('name', 255)->comment('Имя');
+            $table->string('lname', 255)->comment('Фамилия');
+            $table->string('fname', 255)->nullable()->comment('Отчество');
+            $table->string('login', 255)->unique()->comment('Логин');
+            $table->string('password', 255)->comment('Пароль');
+            $table->unsignedBigInteger('role_id')->comment('Ссылка на таблицу Role');
             $table->timestamps();
 
-            $table->foreign('RoleID')->references('RoleID')->on('roles')->onDelete('cascade');
+            $table->foreign('role_id')->references('role_id')->on('roles')->onDelete('cascade');
         });
     }
 

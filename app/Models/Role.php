@@ -13,12 +13,12 @@ class Role extends Model
     protected $table = 'roles';
 
     // Указываем явный первичный ключ
-    protected $primaryKey = 'RoleID';
+    protected $primaryKey = 'role_id';
 
     // Поля, которые можно массово заполнять
     protected $fillable = [
-        'NameRole',    // Название роли
-        'Code',        // Код роли
+        'name_role',    // Название роли
+        'code',        // Код роли
     ];
 
     /**
@@ -26,6 +26,6 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->hasMany(User::class, 'RoleID', 'RoleID');
+        return $this->hasMany(User::class, 'role_id', 'role_id');
     }
 }

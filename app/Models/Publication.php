@@ -10,15 +10,15 @@ class Publication extends Model
     use HasFactory;
 
     protected $table = 'publications';
-    protected $primaryKey = 'PublicationID';
+    protected $primaryKey = 'publication_id';
 
     protected $fillable = [
-        'Title',   // Название издательства
-        'Address', // Адрес издательства
+        'title',   // Название издательства
+        'address', // Адрес издательства
     ];
 
     public function books()
     {
-        return $this->hasMany(Book::class, 'PublicationID', 'PublicationID');
+        return $this->hasMany(Book::class, 'publication_id', 'publication_id');
     }
 }

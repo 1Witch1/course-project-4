@@ -16,20 +16,20 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'Name' => 'required|string|max:255',
-            'LName' => 'required|string|max:255',
-            'FName' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'fname' => 'nullable|string|max:255',
             'login' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
-            'Name' => $validatedData['Name'],         // Имя
-            'LName' => $validatedData['LName'],       // Фамилия
-            'FName' => $validatedData['FName'],       // Отчество (может быть null)
+            'name' => $validatedData['name'],         // Имя
+            'lname' => $validatedData['lname'],       // Фамилия
+            'fname' => $validatedData['fname'],       // Отчество (может быть null)
             'login' => $validatedData['login'],       // Логин
             'password' => $validatedData['password'], // Хешируем пароль
-            'RoleID' => 2, // Задаем роль по умолчанию, например, пользователь
+            'role_id' => 2, // Задаем роль по умолчанию, например, пользователь
         ]);
 
         return response()->json([
@@ -43,10 +43,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-//        $credentials = $request->validate([
-//            'Login' => 'required|string',
-//            'Password' => 'required|string',
-//        ]);
+
 
 //        return [
 //            'a' => User::where('Login', '=', $credentials['Login'])->first(),
@@ -59,13 +56,13 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        $user->api_token = Hash::make(Str::random(60));
-        $user->save();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'message' => 'Успешный вход!',
-            'token' =>  $user->api_token,
             'user' => $user,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
         ]);
     }
 

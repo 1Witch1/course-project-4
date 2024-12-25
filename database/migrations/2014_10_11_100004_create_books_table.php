@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->id('BookID');
-            $table->string('Title', 255)->comment('Название книги'); // Название книги
-            $table->text('Description')->comment('Описание книги'); // Описание книги
-            $table->date('Year_Of_Publication')->comment('Год издания'); // Год издания
-            $table->string('Picture', 255)->comment('Обложка'); // Обложка
-            $table->unsignedBigInteger('PublicationID')->comment('Ссылка на таблицу Publication');
-            $table->unsignedBigInteger('UserID')->comment('Ссылка на таблицу User');
+            $table->id('book_id');
+            $table->string('title', 255)->comment('Название книги'); // Название книги
+            $table->text('description')->comment('Описание книги'); // Описание книги
+            $table->date('year_of_publication')->comment('Год издания'); // Год издания
+            $table->string('picture', 255)->comment('Обложка'); // Обложка
+            $table->unsignedBigInteger('publication_id')->comment('Ссылка на таблицу Publication');
+            $table->unsignedBigInteger('user_id')->comment('Ссылка на таблицу User');
             $table->timestamps();
 
-            $table->foreign('PublicationID')->references('PublicationID')->on('publications')->onDelete('cascade');
-            $table->foreign('UserID')->references('UserID')->on('users')->onDelete('cascade');
+            $table->foreign('publication_id')->references('publication_id')->on('publications')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -10,11 +10,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     // Указываем таблицу и первичный ключ
     protected $table = 'users';
-    protected $primaryKey = 'UserID';
+    protected $primaryKey = 'user_id';
 
     /**
      * Поля, которые можно массово заполнять.
@@ -22,12 +22,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'Name',        // Имя
-        'LName',       // Фамилия
-        'FName',       // Отчество (nullable)
+        'name',        // Имя
+        'lname',       // Фамилия
+        'fname',       // Отчество (nullable)
         'login',       // Логин
         'password',    // Пароль
-        'RoleID',      // Ссылка на роль
+        'role_id',      // Ссылка на роль
     ];
 
     /**
@@ -48,6 +48,6 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo(Role::class, 'RoleID', 'RoleID');
+        return $this->belongsTo(Role::class, 'role_id', 'role_id');
     }
 }

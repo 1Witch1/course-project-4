@@ -10,23 +10,23 @@ class Author extends Model
     use HasFactory;
 
     protected $table = 'authors';
-    protected $primaryKey = 'AuthorID';
+    protected $primaryKey = 'author_id';
 
     protected $fillable = [
-        'Name',     // Имя автора
-        'LName',    // Фамилия автора
-        'FName',    // Отчество автора
-        'Biography',// Биография автора
-        'Picture',  // Изображение автора
+        'name',     // Имя автора
+        'lname',    // Фамилия автора
+        'fname',    // Отчество автора
+        'biography',// Биография автора
+        'picture',  // Изображение автора
     ];
 
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'book_author', 'AuthorID', 'BookID');
+        return $this->belongsToMany(Book::class, 'book_author', 'author_id', 'book_id');
     }
 
     public function publications()
     {
-        return $this->hasMany(AuthorPublication::class, 'AuthorID', 'AuthorID');
+        return $this->hasMany(AuthorPublication::class, 'author_id', 'author_id');
     }
 }

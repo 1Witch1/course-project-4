@@ -10,34 +10,34 @@ class Book extends Model
     use HasFactory;
 
     protected $table = 'books';
-    protected $primaryKey = 'BookID';
+    protected $primaryKey = 'book_id';
 
     protected $fillable = [
-        'Title',           // Название книги
-        'Description',     // Описание книги
-        'Year_Of_Publication', // Год издания книги
-        'Picture',         // Изображение
-        'PublicationID',   // Ссылка на издательство
-        'UserID',          // Ссылка на пользователя
+        'title',           // Название книги
+        'description',     // Описание книги
+        'year_of_publication', // Год издания книги
+        'picture',         // Изображение
+        'publication_id',   // Ссылка на издательство
+        'user_id',          // Ссылка на пользователя
     ];
 
     public function publication()
     {
-        return $this->belongsTo(Publication::class, 'PublicationID', 'PublicationID');
+        return $this->belongsTo(Publication::class, 'publication_id', 'publication_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'UserID', 'UserID');
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class, 'book_genre', 'BookID', 'GenreID');
+        return $this->belongsToMany(Genre::class, 'book_genre', 'book_id', 'genre_id');
     }
 
     public function authors()
     {
-        return $this->belongsToMany(Author::class, 'book_author', 'BookID', 'AuthorID');
+        return $this->belongsToMany(Author::class, 'book_author', 'book_id', 'author_id');
     }
 }

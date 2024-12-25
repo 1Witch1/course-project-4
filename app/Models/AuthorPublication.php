@@ -10,17 +10,17 @@ class AuthorPublication extends Model
     use HasFactory;
 
     protected $table = 'author_publications';
-    protected $primaryKey = 'Author_PublicationsID';
+    protected $primaryKey = 'author_publications_id';
 
     protected $fillable = [
-        'Title',           // Название публикации
-        'Type_Of_Publication', // Тип публикации
-        'Publication_Date', // Дата публикации
-        'AuthorID',        // Ссылка на автора
+        'title',           // Название публикации
+        'type_of_publication', // Тип публикации
+        'publication_date', // Дата публикации
+        'author_id',        // Ссылка на автора
     ];
 
     public function author()
     {
-        return $this->belongsTo(Author::class, 'AuthorID', 'AuthorID');
+        return $this->belongsTo(Author::class, 'author_id', 'author_id');
     }
 }

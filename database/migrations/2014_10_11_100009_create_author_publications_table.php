@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('author_publications', function (Blueprint $table) {
-            $table->id('Author_PublicationsID');
-            $table->string('Title', 255)->comment('Название публикации');
-            $table->string('Type_Of_Publication', 255)->comment('Тип публикации');
-            $table->date('Publication_Date')->comment('Дата выхода публикации');
-            $table->unsignedBigInteger('AuthorID')->comment('Ссылка на таблицу Author');
+            $table->id('author_publications_id');
+            $table->string('title', 255)->comment('Название публикации');
+            $table->string('type_of_publication', 255)->comment('Тип публикации');
+            $table->date('publication_date')->comment('Дата выхода публикации');
+            $table->unsignedBigInteger('author_id')->comment('Ссылка на таблицу Author');
             $table->timestamps();
 
-            $table->foreign('AuthorID')->references('AuthorID')->on('authors')->onDelete('cascade');
+            $table->foreign('author_id')->references('author_id')->on('authors')->onDelete('cascade');
         });
     }
 

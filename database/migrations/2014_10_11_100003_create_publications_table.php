@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('publications', function (Blueprint $table) {
-            $table->id('PublicationID'); // ID издательства
-            $table->string('Title', 255); // Название издательства
-            $table->string('Address', 255); // Адрес издательства
+            $table->id('publication_id'); // ID издательства
+            $table->string('title', 255); // Название издательства
+            $table->string('address', 255); // Адрес издательства
             $table->timestamps(); // Дата создания/обновления записи
         });
     }

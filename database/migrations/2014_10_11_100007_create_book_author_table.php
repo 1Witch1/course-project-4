@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_author', function (Blueprint $table) {
-            $table->id('Book_AuthorID');
-            $table->unsignedBigInteger('BookID')->comment('Ссылка на таблицу Book');
-            $table->unsignedBigInteger('AuthorID')->comment('Ссылка на таблицу Author');
+            $table->id('book_author_id');
+            $table->unsignedBigInteger('book_id')->comment('Ссылка на таблицу Book');
+            $table->unsignedBigInteger('author_id')->comment('Ссылка на таблицу Author');
             $table->timestamps();
 
-            $table->foreign('BookID')->references('BookID')->on('books')->onDelete('cascade');
-            $table->foreign('AuthorID')->references('AuthorID')->on('authors')->onDelete('cascade');
+            $table->foreign('book_id')->references('book_id')->on('books')->onDelete('cascade');
+            $table->foreign('author_id')->references('author_id')->on('authors')->onDelete('cascade');
         });
     }
 
