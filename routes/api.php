@@ -26,17 +26,24 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 // API для книг
-Route::get('/books', [BookController::class, 'index']);
-Route::get('/books/{id}', [BookController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
+Route::get('/books', [BookController::class, 'index']); // Просмотр всех книг
+Route::get('/books/{id}', [BookController::class, 'show']); // Просмотр конкретной книги
+});
 
 // API для авторов
-Route::get('/authors', [AuthorController::class, 'index']);
-Route::get('/authors/{id}', [AuthorController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/authors', [AuthorController::class, 'index']); // Просмотр всех авторов
+    Route::get('/authors/{id}', [AuthorController::class, 'show']); // Просмотр конкретного автора
+});
 
 // API для жанров
-Route::get('/genres', [GenreController::class, 'index']);
-Route::get('/genres/{id}', [GenreController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
+Route::get('/genres', [GenreController::class, 'index']); // Просмотр всех жанров
+Route::get('/genres/{id}', [GenreController::class, 'show']); // Просмотр конкретного жанра
+});
 
 // API для публикаций авторов
-Route::get('/author-publications', [AuthorPublicationController::class, 'index']);
-Route::get('/author-publications/{id}', [AuthorPublicationController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
+Route::get('/author-publications', [AuthorPublicationController::class, 'index']); // Просмотр всех публикаций авторов
+});
