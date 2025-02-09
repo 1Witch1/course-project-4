@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Book extends Model
+{
+    use HasFactory;
+
+    protected $table = 'books';
+    protected $primaryKey = 'book_id';
+
+    protected $fillable = [
+        'title',           // Название книги
+        'description',     // Описание книги
+        'year_of_publication', // Год издания книги
+        'picture',         // Изображение
+        'publication_id',   // Ссылка на издательство
+        'user_id',          // Ссылка на пользователя
+    ];
+
+    public function publication()
+    {
+        return $this->belongsTo(Publication::class, 'publication_id', 'publication_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'book_genre', 'book_id', 'genre_id');
+    }
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class, 'book_author', 'book_id', 'author_id');
+    }
+}
