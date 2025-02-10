@@ -4,16 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\BookGenre;
+use Illuminate\Support\Facades\DB;
 
 class BookGenresSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        $bookGenres = [
+        DB::table('book_genre')->insert([
             ['book_id' => 1, 'genre_id' => 1],
             ['book_id' => 2, 'genre_id' => 1],
             ['book_id' => 3, 'genre_id' => 1],
@@ -24,10 +21,6 @@ class BookGenresSeeder extends Seeder
             ['book_id' => 8, 'genre_id' => 1],
             ['book_id' => 9, 'genre_id' => 1],
             ['book_id' => 10, 'genre_id' => 1],
-        ];
-
-        foreach ($bookGenres as $bookGenre) {
-            BookGenre::create($bookGenre);
-        }
+        ]);
     }
 }

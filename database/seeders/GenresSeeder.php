@@ -4,16 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Genre;
+use Illuminate\Support\Facades\DB;
 
 class GenresSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        $genres = [
+        DB::table('genres')->insert([
             ['style' => 'Роман'],
             ['style' => 'Детектив'],
             ['style' => 'Поэзия'],
@@ -24,10 +21,6 @@ class GenresSeeder extends Seeder
             ['style' => 'Трагедия'],
             ['style' => 'Биография'],
             ['style' => 'Научная литература'],
-        ];
-
-        foreach ($genres as $genre) {
-            Genre::create($genre);
-        }
+        ]);
     }
 }
