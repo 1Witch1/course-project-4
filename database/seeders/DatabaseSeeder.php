@@ -16,11 +16,9 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UsersSeeder::class,
             PublicationsSeeder::class,
-            BooksSeeder::class,
             AuthorsSeeder::class,
             GenresSeeder::class,
-            BookAuthorsSeeder::class,
-            BookGenresSeeder::class,
+            BooksSeeder::class,
             AuthorPublicationsSeeder::class,
         ]);
     }

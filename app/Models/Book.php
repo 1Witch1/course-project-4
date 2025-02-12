@@ -17,6 +17,8 @@ class Book extends Model
         'description',     // Описание книги
         'year_of_publication', // Год издания книги
         'picture',         // Изображение
+        'genre_id',   // Ссылка на жанры
+        'author_id',   // Ссылка на автора
         'publication_id',   // Ссылка на издательство
         'user_id',          // Ссылка на пользователя
     ];
@@ -31,13 +33,13 @@ class Book extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    public function genres()
+    public function genre()
     {
-        return $this->belongsToMany(Genre::class, 'book_genre', 'book_id', 'genre_id');
+        return $this->belongsTo(Genre::class, 'genre_id', 'genre_id');
     }
 
-    public function authors()
+    public function author()
     {
-        return $this->belongsToMany(Author::class, 'book_author', 'book_id', 'author_id');
+        return $this->belongsTo(Author::class, 'author_id', 'author_id');
     }
 }
